@@ -2,6 +2,7 @@ import React from 'react';
 import {app, database} from './Firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import NotesForm from './components/NotesForm';
+import Notes from './components/Notes';
 import Button from 'react-bootstrap/Button';
 import { getDatabase, ref, push, set } from "firebase/database";
 
@@ -44,7 +45,11 @@ const home = () => {
                     marginTop: 20
                     }} variant="danger" onClick = {signout}>Sign Out</Button>       
             <div className = 'screen'>
-                    <NotesForm {...({createNote})}/>
+                <table>
+                    <tr><NotesForm {...({createNote})}/></tr>
+                    <tr><div>&nbsp;</div></tr>
+                    <tr><Notes/></tr>
+                    </table>
                     </div>
                     </div>
     )

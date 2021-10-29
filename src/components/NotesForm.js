@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {app, database} from '../Firebase/firebase';
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, push, set } from "firebase/database";
+import { Button, Card } from 'react-bootstrap';
 
 const NotesForm =(props)=>{
 
@@ -26,6 +27,7 @@ const NotesForm =(props)=>{
         })
     }
     const handleFormSubmit = e => {
+        alert("Note Saved");
         e.preventDefault();
         props.createNote(values);
     }
@@ -33,14 +35,21 @@ const NotesForm =(props)=>{
 
     return(
     <div>
-        <h3>Create New Note</h3>
-        <form onSubmit = {handleFormSubmit}>
+        <Card border="warning" style={{ width: '100%' }}>
+    <Card.Header><center><h4>Create New Note</h4></center></Card.Header>
+    <Card.Body>
+        <center>
+    <form onSubmit = {handleFormSubmit}>
             <label>Title<br/>
-            <input type = 'text' name = "title" value={values.title} onChange={handleInputChange}></input></label><br/>
+            <input style={{width:300}} type = 'text' name = "title" value={values.title} onChange={handleInputChange}></input></label><br/>
             <label>Note<br/>
-            <textarea name = "note" value={values.note} onChange={handleInputChange}></textarea></label><br/>
-            <input type = 'submit' value ='Save Note'/>
-            </form>
+            <textarea style={{width:300}} name = "note" value={values.note} onChange={handleInputChange}></textarea></label><br/>
+            <Button variant="warning" onClick = {handleFormSubmit}>Save Note</Button>
+            </form></center>
+    </Card.Body>
+  </Card>
+        
+        
     </div>
     );
 }
