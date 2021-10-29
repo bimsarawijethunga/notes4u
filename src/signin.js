@@ -1,6 +1,7 @@
 import React from 'react';
 import {app} from './Firebase/firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import Button from 'react-bootstrap/Button';
 
 const signin = () =>{
 
@@ -28,7 +29,11 @@ const signin = () =>{
     }
 
     return(
-        <button onClick = {SignInWithFirebase}>Sign In</button>
+        <div className = 'screen'>
+            <text><center><h1 style = {{fontSize:80, color: '#fca400'}}>Notes4U</h1>{'\n'}
+            <h2 style = {{marginTop:'10%', marginBottom:'10%'}}>Please Sign In with Your Google Account</h2>{'\n'}
+            <Button size="lg" variant="warning" active onClick = {SignInWithFirebase}>Sign In</Button></center></text>
+        </div>
     )
 }
 

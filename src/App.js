@@ -8,6 +8,7 @@ import Home from './home';
 import Signin from'./signin';
 import {app} from './Firebase/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
