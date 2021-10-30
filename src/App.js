@@ -9,6 +9,7 @@ import Signin from'./signin';
 import {app, database} from './Firebase/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import background from "./img/bg.jpg";
 
 
 function App() {
@@ -29,22 +30,35 @@ function App() {
     }
   });
   
-  if(signedIn===true){
+  if(signedIn===false){
     return (
+      <div style={{ backgroundImage: `url(${background})`,
+      backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh' }}>
       <Router>
         <Switch>
-          <Route path = '/' component = {Home}/>
+          <Route path = '/' component = {Signin}/>
           </Switch>
           </Router>
+          </div>
           );
     }
     else{
       return (
+        <div style={{ backgroundImage: `url(${background})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh' }}>
         <Router>
           <Switch>
-            <Route path = '/' component = {Signin}/>
+            <Route path = '/' component = {Home}/>
             </Switch>
-            </Router>
+            </Router></div>
             );
     }
   }

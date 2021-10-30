@@ -38,7 +38,7 @@ const home =()=> {
         
         return(
         <div>
-            <h1 style={{
+            <h1 className="logotext" style={{
                     fontSize: 50,
                     position: "relative",
                     top: 40,
@@ -53,7 +53,7 @@ const home =()=> {
                     marginTop: 20
                     }} variant="danger" onClick = {signout}>Sign Out</Button>       
             <div className = 'screen'>
-                <text>
+                <text style={{marginRight:200}}>
                     <NotesForm createNote= {createNote}/>
                     </text>
                     <text>

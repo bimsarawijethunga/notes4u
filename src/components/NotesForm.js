@@ -33,9 +33,9 @@ const NotesForm =(props)=>{
     <Card.Body>
         <center>
     <form onSubmit = {handleFormSubmit}>
-            <label>Title<br/>
+            <label><strong>Title</strong><br/>
             <input style={{width:300}} type = 'text' name = "title" value={values.title} onChange={handleInputChange}></input></label><br/>
-            <label>Note<br/>
+            <label><strong>Note</strong><br/>
             <textarea style={{width:300}} name = "note" value={values.note} onChange={handleInputChange}></textarea></label><br/>
             <Button variant="warning" onClick = {handleFormSubmit}>Save Note</Button>
             </form></center>

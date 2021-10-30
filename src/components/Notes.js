@@ -2,22 +2,31 @@ import { useState, useEffect } from "react";
 import {app} from '../Firebase/firebase';
 import { getDatabase, ref, onValue, query, orderByChild, equalTo } from "firebase/database";
 import Note from "./Note";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 const Notes =()=> {
-
+  
+  
     const [notesList, setNotesList] = useState([]);
 
-    useEffect(() => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      const nuid = user.uid;
-      const db = getDatabase();
+    const db = getDatabase();
+    const auth = getAuth();
+    const user = auth.currentUser;
+      
+
+      
+    useEffect( () => {
+
+      onAuthStateChanged(auth, user =>{
+
+        let nuid = user.uid;
 
       const notesRef = query(ref(db, 'notes'), orderByChild('uid'), equalTo(nuid));
+
       onValue(notesRef, (snapshot) => {
         const note = snapshot.val();
+        
         /*  todos
         {
           MeO6HU67vtmhgubBmxr: {complete: false, title: "study"},
@@ -36,9 +45,9 @@ const Notes =()=> {
         */
         setNotesList(notesList);
       });
-    }, []);
+    });}, []);
   
-        if(notesList!=[]){
+    if (Array. isArray(notesList) && notesList. length){
           return(
         <div classname = "screen"><center>
           <h3>These are Your Notes</h3>
@@ -49,7 +58,7 @@ const Notes =()=> {
         else{
           return(
           <div>
-            <h3>Please Create Some</h3>
+            <h3>Please Create Some Notes</h3>
             </div>);
         }
 }
