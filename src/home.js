@@ -1,15 +1,17 @@
-import React from 'react';
-import {app, database} from './Firebase/firebase';
+import { useState, useEffect } from "react";
+import {app} from './Firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import NotesForm from './components/NotesForm';
 import Notes from './components/Notes';
 import Button from 'react-bootstrap/Button';
-import { getDatabase, ref, push, set } from "firebase/database";
+import { getDatabase, ref, push, set, onValue} from "firebase/database";
+import { render } from '@testing-library/react';
 
-const home = () => {
+const home =()=> {
 
+    let x = 0;
     
-    const signout =()=>{
+    const signout=()=> {
         const auth = getAuth();
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -18,17 +20,23 @@ const home = () => {
         });
     }
 
-    const createNote=obj=> {
-        console.log(obj);
+    const createNote =(obj)=>  {
+        x = x+1;
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user.uid;
         const db = getDatabase();
         const postListRef = ref(db, 'notes');
         const newPostRef = push(postListRef);
         set(newPostRef, {
-            obj
+            title: obj.title,
+            note: obj.note,
+            uid: uid,
+            kid: x,
         });
     }
-
-    return(
+        
+        return(
         <div>
             <h1 style={{
                     fontSize: 50,
@@ -45,15 +53,15 @@ const home = () => {
                     marginTop: 20
                     }} variant="danger" onClick = {signout}>Sign Out</Button>       
             <div className = 'screen'>
-                <table>
-                    <tr><NotesForm {...({createNote})}/></tr>
-                    <tr><div>&nbsp;</div></tr>
-                    <tr><Notes/></tr>
-                    </table>
+                <text>
+                    <NotesForm createNote= {createNote}/>
+                    </text>
+                    <text>
+                    <Notes /></text>
                     </div>
                     </div>
-    )
-};
+    );
+                }
 
 export default home;
 

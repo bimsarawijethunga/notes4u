@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {app, database} from '../Firebase/firebase';
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, push, set } from "firebase/database";
+import {app} from '../Firebase/firebase';
 import { Button, Card } from 'react-bootstrap';
 
 const NotesForm =(props)=>{
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user.uid;
 
 
     const initialFieldValues = {
         title: '',
         note: '',
-        id: uid,
     }
 
     var [values, setValues] = useState(initialFieldValues);
