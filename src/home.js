@@ -53,7 +53,7 @@ const home =()=> {
                     marginTop: 20
                     }} variant="danger" onClick = {signout}>Sign Out</Button>       
             <div className = 'screen'>
-                <text style={{marginRight:200}}>
+                <text style={{marginRight:150}}>
                     <NotesForm createNote= {createNote}/>
                     </text>
                     <text>
