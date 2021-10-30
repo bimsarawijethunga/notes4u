@@ -20,9 +20,9 @@ const NotesForm =(props)=>{
         })
     }
     const handleFormSubmit = e => {
-        alert("Note Saved");
         e.preventDefault();
         props.createNote(values);
+        setValues(initialFieldValues);
     }
 
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import {app} from './Firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import NotesForm from './components/NotesForm';
@@ -7,9 +7,8 @@ import Button from 'react-bootstrap/Button';
 import { getDatabase, ref, push, set, onValue} from "firebase/database";
 import { render } from '@testing-library/react';
 
-const home =()=> {
 
-    let x = 0;
+const home =()=> {
     
     const signout=()=> {
         const auth = getAuth();
@@ -21,7 +20,7 @@ const home =()=> {
     }
 
     const createNote =(obj)=>  {
-        x = x+1;
+        let x = Math.random();
         const auth = getAuth();
         const user = auth.currentUser;
         const uid = user.uid;

@@ -27,22 +27,11 @@ const Notes =()=> {
       onValue(notesRef, (snapshot) => {
         const note = snapshot.val();
         
-        /*  todos
-        {
-          MeO6HU67vtmhgubBmxr: {complete: false, title: "study"},
-          MeOATRs4Yu045jFboYZ: {complete: false, title: "sleep"}
-        }
-        */
         const notesList = [];
         for (let id in note) {
           notesList.push({ id, ...note[id] });
         }
-        /*
-        [
-          {id: "-MeO6HU67vtmhgubBmxr", complete: false, title: "study"},
-          {id: "-MeOATRs4Yu045jFboYZ", complete: false, title: "sleep"}...
-        ]
-        */
+        
         setNotesList(notesList);
       });
     });}, []);
